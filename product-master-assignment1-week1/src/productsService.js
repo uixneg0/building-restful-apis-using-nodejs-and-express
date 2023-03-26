@@ -5,30 +5,40 @@ const productsList = require("./products.json").products;
 
 const getProducts = () => {
   // get all products
+  return JSON.stringify(productsList);
 }
 
-const getProductsById = (productId, done) => {
+const getProductsById = (productId) => {
   let product = null
-
   // get a product by ID
+  let products = productsList;
+  for (let i = 0; i < products.length; i++){
+    let p = products[i];
+    if (p.id == productId){
+      product = p;
+      break;
+    }
+  }
 
-  return done(null, JSON.stringify(product));
+  return JSON.stringify(product);
 }
 
-const saveProduct = (newProduct, done) => {
+const saveProduct = (newProduct) => {
  // save a product
-  return done(null, JSON.stringify(productsList));
+  console.log(newProduct);
+  productsList.push(newProduct);
+  return JSON.stringify(productsList);
 }
 
-const updateProduct = (productId, updateData, done) => {
+const updateProduct = (productId, updateData) => {
   let updatedProductList = null;
   // update the product list
-  done(null, JSON.stringify(updatedProductList));
+  JSON.stringify(updatedProductList);
 }
 
-const deleteProduct = (productId, done) => {
+const deleteProduct = (productId) => {
   // delete a product    
-  done(null, JSON.stringify(productsList));
+  JSON.stringify(productsList);
 }
 
 
